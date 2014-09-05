@@ -39,11 +39,11 @@ class windfreakusb2(object):
         msg_string = msg_string.rstrip()
         return msg_string
     
-    def query_freq(self):
+    def get_freq(self):
         self._serial_write('f?')
         return self._serial_read()
         
-    def query_power(self):
+    def get_power(self):
         self._serial_write('a?')
         return self._serial_read()
     
