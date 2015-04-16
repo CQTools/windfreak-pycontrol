@@ -42,6 +42,25 @@ class windfreakusb2(object):
     def get_freq(self):
         self._serial_write('f?')
         return self._serial_read()
+	
+	def rf_on(self):
+		self._serial_write('o1')
+	
+	def rf_off(self):
+		self._serial_write('o0')
+	
+	def rf_power_low(self):
+		self._serial_write('h0')
+
+	def rf_power_high(self):
+		self._serial_write('h1')
+	
+	def set_pulse_mode(self,value):
+		self._serial_write('j' + str(value))
+	
+	def get_pulse_mode(self,value):
+		self._serial_write('j?')
+		return self._serial_read()
         
     def get_power(self):
         self._serial_write('a?')
