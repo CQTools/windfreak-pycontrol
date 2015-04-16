@@ -53,6 +53,13 @@ class windfreakusb2(object):
     def check_osci(self):
         self._serial_write('p')
         return self._serial_read()
+								
+    def set_clock(self,value):
+        self._serial_write('x' + str(value))
+
+    def get_clock(self):
+		self._serial_write('x?')
+		return self._serial_read()
 
     def set_power(self,value):
         self._serial_write('a' + str(value))
