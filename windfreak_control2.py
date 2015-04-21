@@ -24,7 +24,7 @@ class windfreakusb2(object):
 		self.serial = self._open_port(port)
 		
 	def _open_port(self, port):
-		ser = serial.Serial(port, self.baudrate, timeout=5)
+		ser = serial.Serial(port, self.baudrate, timeout=1)
 		ser.readline()
 		ser.timeout = 1
 		return ser
@@ -44,9 +44,11 @@ class windfreakusb2(object):
 	
 	def rf_on(self):
 		self._serial_write('o1')
+		return self._serial_read()
 	
 	def rf_off(self):
 		self._serial_write('o0')
+		return self._serial_read()
 	
 	def rf_power_low(self):
 		self._serial_write('h0')
@@ -67,6 +69,7 @@ class windfreakusb2(object):
 		
 	def set_freq(self,value):
 		self._serial_write('f' + str(value))
+		return self._serial_read()
 		
 	def check_osci(self):
 		self._serial_write('p')
@@ -74,6 +77,7 @@ class windfreakusb2(object):
 	
 	def set_clock(self,value):
 		self._serial_write('x' + str(value))
+		return self._serial_read()
 	
 	def get_clock(self):
 		self._serial_write('x?')
@@ -81,6 +85,7 @@ class windfreakusb2(object):
 	
 	def set_power(self,value):
 		self._serial_write('a' + str(value))
+		return self._serial_read()
 	
 	def serial_number(self):
 		self._serial_write('+')
